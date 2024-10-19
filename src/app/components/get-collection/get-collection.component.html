@@ -1,0 +1,39 @@
+<div class="row mt-2">
+  <div class="col-4">
+    <form #form="ngForm">
+      <div class="mb-3">
+        <label for="name" class="form-label">Collection Name</label>
+        <input type="text" class="form-control" id="name" aria-describedby="nameHelp" ngModel name="name"
+               #name="ngModel">
+        <div id="nameHelp" class="form-text">...</div>
+      </div>
+      <button (click)="listCollection(form)" type="button" class="btn btn-primary">List</button>
+    </form>
+  </div>
+  <div class="col-8">
+    <h3 *ngIf="data.length<=0">There is no Collection by the given name</h3>
+    <table *ngIf="data.length>0" class="table">
+      <thead>
+      <tr>
+        @for (item of dataColumns; track item) {
+          <th scope="col">{{ item }}</th>
+        }
+        <th>
+          Action
+        </th>
+      </tr>
+
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of data">
+        @for (column of dataColumns; track column) {
+          <td>{{ item[column] }}</td>
+        }
+        <td>
+          <button (click)="deleteCollection(item.id)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

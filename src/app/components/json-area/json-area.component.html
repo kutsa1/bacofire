@@ -1,0 +1,6 @@
+<!-- json-textarea.component.html -->
+<form [formGroup]="jsonForm" (ngSubmit)="onSubmit()">
+  <textarea formControlName="jsonInput" rows="10" cols="30" placeholder="Enter JSON here..." (input)="validateJson()"></textarea>
+  <div *ngIf="!isValidJson" style="color: red;">Invalid JSON format!</div>
+  <button type="submit" [disabled]="!isValidJson">Submit</button>
+</form>
